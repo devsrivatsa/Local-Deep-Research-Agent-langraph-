@@ -35,7 +35,7 @@ def exa_search_fn(
     
     return exa.search_and_contents(query, **kwargs)
 
-async def process_query(query: str):
+async def process_query(query: str, subpages:Optional[int]=None):
     loop = asyncio.get_event_loop()
     response = await loop.run_in_executor(None, exa_search_fn)
     formatted_results = []
@@ -113,8 +113,6 @@ async def process_query(query: str):
 
 async def exa_search(
     search_queries, 
-    max_characters:Optional[int]=None, 
-    num_results=5, 
     include_domains:Optional[List[str]]=None,
     exclude_domains:Optional[List[str]]=None,
     subpages:Optional[int]=None):
@@ -158,7 +156,7 @@ async def exa_search(
         try:
             if i > 0:
                 await asyncio.sleep(0.25)
-            result = await process_query(query)
+            result = await process_query(query, subpages)
             search_docs.append(result)
         except Exception as e:
             print(f"Error processing query '{query}': {str(e)}")
