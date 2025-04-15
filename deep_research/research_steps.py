@@ -1,6 +1,7 @@
 from langchain_core.runnables import RunnableConfig
 from langchain_core.messages import SystemMessage, HumanMessage
 from state import SectionState, Queries
+from search.search_utils import select_and_execute_search
 from configuration import Configuration
 from utils import get_config_value, get_search_params
 from prompts import query_writer_instructions

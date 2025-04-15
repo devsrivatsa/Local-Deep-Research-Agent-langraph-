@@ -1,8 +1,9 @@
 from langgraph.graph import StateGraph, START, END
-from state import SectionState
+from state import SectionState, SectionOutputState
 from research_steps import (
     generate_queries,
     search_web,
+    write_section
 )
 
 graph_builder = StateGraph(SectionState, output=SectionOutputState)
